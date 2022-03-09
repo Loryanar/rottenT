@@ -1,0 +1,33 @@
+<ion-header color="light">
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="login" color="success"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  class="ion-padding ion-text-center" color="light">
+  <img src="../../assets/tomato.png" class="logo" />
+  <div class="title">
+    <h2>ROTTEN T</h2>
+    <h4>SIGN UP</h4>
+    
+  </div>
+<div>
+  <form [formGroup]="Form" (ngSubmit)="onSubmit()">
+  
+  <ion-input placeholder="Username"  class="primary-input" required></ion-input>
+  <ion-input placeholder="Email" type="email"  class="primary-input" required></ion-input>
+  <ion-input placeholder="Date" type="date"  class="primary-input" required></ion-input>
+  <ion-input placeholder="Country"  class="primary-input" required></ion-input>
+  <ion-input placeholder="Password" type="password"  class="primary-input" required></ion-input>
+
+
+  <div class="ion-margin-top">
+    <ion-button expand="block" type="submit"  color="success" >SIGN UP</ion-button>
+  </div>
+
+
+</form>
+</div>
+</ion-content>
