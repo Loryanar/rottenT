@@ -30,14 +30,14 @@ import { AuthService } from '../auth/auth.service';
     }
   
    
-   async login() {
+  login() {
       
       if (this.Form.valid){
         this.resultado = "Todos los datos son válidos";
         console.log(this.resultado);
       this.auth.login(this.UserLogin).subscribe(async res =>{
         if (res){
-          this.almacenar.set("Token",res);
+          this.almacenar.set("token",res);
           window.location.replace("http://localhost:8102/tabs")
         }
       })

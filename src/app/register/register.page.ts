@@ -30,7 +30,7 @@ export class RegisterPage implements OnInit {
     this.resultado = "Todos los datos son válidos";
     console.log(this.resultado);
    
-    fetch('https://restapi-mr.herokuapp.com/registro',{
+    fetch('https://rotten-t.herokuapp.com/registro',{
       method: 'POST',
       headers: new Headers({
    
@@ -59,6 +59,7 @@ export class RegisterPage implements OnInit {
   }
   else{
     this.resultado = "Hay datos inválidos en el formulario";
+    console.log(this.Form);
     console.log(this.resultado)}
   }
  
