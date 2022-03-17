@@ -9,7 +9,7 @@ import { AuthService } from './../../auth/auth.service';
   styleUrls: ['./update.page.scss'],
 })
 export class UpdatePage implements OnInit {
-   tok:AuthService;
+  private  tok:AuthService;
   resultado: string;
   Form = new FormGroup({
     na: new FormControl('',[Validators.required]),
@@ -18,26 +18,25 @@ export class UpdatePage implements OnInit {
    fn: new FormControl('',[Validators.required]),
    
    });
-  constructor(
-    public modalCtrl: ModalController,
-  ) { }
+ 
+constructor(private auth: AuthService){
 
+}
   ngOnInit() {
   }
   onSubmit() {
     if (this.Form.valid){
     this.resultado = "Todos los datos son válidos";
     console.log(this.resultado);
-  let toke=this.tok.getToken();
-  let p= toke.resultToken;
-  console.log(p);  
+ this.auth.getToken();
+ 
+  console.log(this.auth.getToken());  
     fetch('https://rotten-t.herokuapp.com/actualizar',{
       method: 'PUT',
       headers: new Headers({
+        'Content-Type': 'application/json',
    
-   'Content-Type': 'application/json',
-   'authorization': 'Bearer'
-   
+   'authorization': 'Bearer '+ this.auth.getToken()   
     }),
       body: JSON.stringify(
     {
@@ -53,7 +52,7 @@ export class UpdatePage implements OnInit {
     console.log(response);
     if (response.redirected ==false )
     {
-      window.location.replace("http://localhost:8100/tabs")
+      window.location.replace("http://localhost:8100/tabs/user")
     }
     return response.json()
   }).then(r =>{
@@ -67,8 +66,6 @@ export class UpdatePage implements OnInit {
   }
  
   
-  async dismiss() {
-    return await this.modalCtrl.dismiss();
-  }
+
 
 }

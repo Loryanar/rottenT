@@ -15,7 +15,7 @@ import { AuthService } from '../auth/auth.service';
 
   export class LoginPage  {
     private UserLogin:User;
-    private almacenar: AuthService;
+    
     
     resultado: string;
     Form = new FormGroup({
@@ -43,8 +43,8 @@ import { AuthService } from '../auth/auth.service';
           contrasena: this.Form.value.contrasena,
         }
       this.auth.login(this.UserLogin).subscribe(async res =>{
-        if (res){
-          window.location.replace("http://localhost:8100/tabs")
+        if (res!=null){
+          window.location.replace("http://localhost:8100/tabs/update")
         }
       })
     }
