@@ -22,7 +22,16 @@ const routes: Routes = [
     {
       path: 'search',
       loadChildren: () => import('./../../page/search/search.module').then( m => m.SearchPageModule)
-    },]
+    },
+  
+  {
+    path: 'delete',
+    loadChildren: () => import('./../delete/delete.module').then( m => m.DeletePageModule)
+  },
+  {
+    path: 'update',
+    loadChildren: () => import('./../update/update.module').then( m => m.UpdatePageModule)
+  },]
   }
 ];
 

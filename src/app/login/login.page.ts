@@ -15,30 +15,36 @@ import { AuthService } from '../auth/auth.service';
 
   export class LoginPage  {
     private UserLogin:User;
-    private almacenar: Storage;
+    private almacenar: AuthService;
+    
     resultado: string;
     Form = new FormGroup({
      
-      Username: new FormControl('', [Validators.required]),
+      nick: new FormControl('', [Validators.required]),
     
-     password: new FormControl('',Validators.compose([Validators.required, Validators.maxLength(15)])),
+     contrasena: new FormControl('',Validators.compose([Validators.required, Validators.maxLength(15)])),
      
-     
+      
      });
+      
     constructor(private auth: AuthService) { 
       
     }
-  
+ 
    
-  login() {
+  log() {
       
       if (this.Form.valid){
         this.resultado = "Todos los datos son válidos";
+        console.log(this.Form)
         console.log(this.resultado);
+        this.UserLogin={
+          nick:this.Form.value.nick,
+          contrasena: this.Form.value.contrasena,
+        }
       this.auth.login(this.UserLogin).subscribe(async res =>{
         if (res){
-          this.almacenar.set("token",res);
-          window.location.replace("http://localhost:8102/tabs")
+          window.location.replace("http://localhost:8100/tabs")
         }
       })
     }

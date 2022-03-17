@@ -1,0 +1,48 @@
+
+
+<ion-content>
+  <div class="main_content_div">
+  
+  <div class="user_div">
+  <div class="first_div">
+  <ion-label class="username">Nombre y Apellido</ion-label>
+  </div>
+  </div>
+  
+  <div class="content_div">
+    <form [formGroup]="Form" (ngSubmit)="onSubmit()" >
+      <h3>Nickname</h3>
+      <div class="input-container" >
+        
+    <ion-input placeholder="Username" formControlName="nick" class="list-div" required></ion-input>
+      </div>
+       
+      <h3>Email</h3>
+     <div class="input-container"> 
+    <ion-input placeholder="Email" type="email" formControlName="email"    class="list-div" required></ion-input>
+      </div>
+       
+      <h3>Date</h3>
+    <div class="input-container">
+    <ion-input placeholder="Date" type="date" formControlName="fn"   class="list-div" required></ion-input>
+    </div> 
+    
+    <h3>Country</h3>
+    <div class="input-container">
+    <ion-input  placeholder="Country" formControlName="na" class="list-div" required></ion-input>
+    </div >
+  
+    
+  
+  
+    <div class="ion-margin-top">
+      <ion-button expand="block" type="submit"  color="success" >UPDATE</ion-button>
+    </div>
+  
+  
+  </form>
+
+  </div>
+  </div>
+  </ion-content>
+  

@@ -11,16 +11,16 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   AUTH_SERVER_ADDRESS:  string  =  'https://rotten-t.herokuapp.com';
   authSubject  =  new  BehaviorSubject(false);
-  mytoken: any;
+  myToken: any;
 
   constructor(private httpClient: HttpClient){
-this.mytoken="";
+this.myToken="";
   }
     setToken(values){
-      this.mytoken=values;
+      this.myToken=values;
     }
-    getToken(values){
-      return this.mytoken;
+    getToken(){
+      return this.myToken;
     }
  
    login(user: User){

@@ -1,21 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-
 import { FormGroup, FormControl,Validators } from '@angular/forms';
+import { AuthService } from './../../auth/auth.service';
+
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.page.html',
-  styleUrls: ['./register.page.scss'],
+  selector: 'app-update',
+  templateUrl: './update.page.html',
+  styleUrls: ['./update.page.scss'],
 })
-
-
-export class RegisterPage implements OnInit {
+export class UpdatePage implements OnInit {
+   tok:AuthService;
   resultado: string;
   Form = new FormGroup({
     na: new FormControl('',[Validators.required]),
     nick: new FormControl('',[Validators.maxLength(15)]),
    email: new FormControl('',Validators.compose([Validators.required,Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]) ),
-   password: new FormControl('',Validators.compose([Validators.required, Validators.maxLength(15)])),
    fn: new FormControl('',[Validators.required]),
    
    });
@@ -29,12 +28,16 @@ export class RegisterPage implements OnInit {
     if (this.Form.valid){
     this.resultado = "Todos los datos son válidos";
     console.log(this.resultado);
-   
-    fetch('https://rotten-t.herokuapp.com/registro',{
-      method: 'POST',
+  let toke=this.tok.getToken();
+  let p= toke.resultToken;
+  console.log(p);  
+    fetch('https://rotten-t.herokuapp.com/actualizar',{
+      method: 'PUT',
       headers: new Headers({
    
-   'Content-Type': 'application/json'
+   'Content-Type': 'application/json',
+   'authorization': 'Bearer'
+   
     }),
       body: JSON.stringify(
     {
@@ -42,7 +45,7 @@ export class RegisterPage implements OnInit {
     "email": this.Form.value.email,
     "fn": this.Form.value.fn,
     "na": this.Form.value.na,
-    "contrasena": this.Form.value.password,
+
     
     })
     
