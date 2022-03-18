@@ -45,12 +45,12 @@
 </div>
 <div class="list-div">
  <ion-label >Edit Profile </ion-label>
- <ion-icon name="chevron-forward-outline"></ion-icon>
+ <ion-icon [routerLink]="['/tabs/update']" name="chevron-forward-outline"></ion-icon>
 </div>
 
  <div class="list-div">
-  <ion-label >Delete User </ion-label>
-  <ion-icon name="chevron-forward-outline"></ion-icon>
+  <ion-label   [routerLink]="['/tabs/delete']">Delete User </ion-label>
+  <ion-icon [routerLink]="['/tabs/delete']" name="chevron-forward-outline"></ion-icon>
  </div>
  <div class="list-div">
   <ion-label >Log out </ion-label>

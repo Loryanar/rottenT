@@ -1,9 +1,34 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>delete</ion-title>
+<ion-header color="light">
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/user" color="success"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div class="main_content_div">
+  
+  <div class="user_div">
+  <div class="first_div">
+  <ion-label class="username">Nombre y Apellido</ion-label>
+  </div>
+  </div>
+  
+  <div class="content_div">
+    <form [formGroup]="Form" (ngSubmit)="onSubmit()" >
+      <h3>Delete User</h3>
+    
+  
+  
+    <div class="ion-margin-top">
+      <ion-button expand="block" type="submit"  color="success" >Delete</ion-button>
+    </div>
+  
+  
+  </form>
 
-</ion-content>
+  </div>
+  </div>
+  </ion-content>
+  
