@@ -1,0 +1,51 @@
+<div
+  style="
+    background-color: #22242894;
+    z-index: 999;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+  "
+  *ngIf="loading"
+>
+  <ion-spinner name="lines" style="color: #2eff74e1"></ion-spinner>
+</div>
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Favorites</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-searchbar
+  placeholder="Search..."
+  (search)="search($event.target.value)"
+  showCancelButton="focus"
+  animated
+>
+</ion-searchbar>
+
+<ion-content>
+  <ion-grid>
+    <ion-row *ngFor="let row of top">
+      <ion-col *ngFor="let movie of row">
+        <ion-card [routerLink]="['/profile-movie/' + movie.id]">
+          <img src="{{movie.image}}" alt="" style="width: 100%" />
+          <ion-card-header>
+            <ion-card-subtitle>Movie</ion-card-subtitle>
+            <ion-card-title>{{movie.title}}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content> {{movie.description}} </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

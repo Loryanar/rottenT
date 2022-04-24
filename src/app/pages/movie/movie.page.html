@@ -1,0 +1,166 @@
+<div
+  style="
+    background-color: #22242894;
+    z-index: 999;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+  "
+  *ngIf="loading"
+>
+  <ion-spinner name="lines" style="color: #2eff74e1"></ion-spinner>
+</div>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col sizeMd="4" offsetMd="4">
+        <!--If movie is true (exists), do the rest of the code-->
+        <div *ngIf="movie">
+          <ion-card>
+            <ion-card-content class="ion-text-center">
+              <ion-card-title>
+                <ion-icon
+                  *ngIf="is_favorite"
+                  name="star"
+                  style="color: yellow; font-size: 16px; margin: 2.5px"
+                  (click)="addRating(i + 1)"
+                ></ion-icon>
+                {{movie.title}} ({{movie.year}})
+              </ion-card-title>
+              <br />
+              <img src="{{movie.image}}" alt="" style="width: 100%" />
+              <br />
+
+              <ion-item>
+                <p>Rating</p>
+                <div
+                  *ngIf="general_rating !== undefined"
+                  style="padding: 5px; width: 100%; text-align: center"
+                >
+                  <div
+                    *ngFor="let item of [].constructor(10) let i = index"
+                    style="display: inline"
+                  >
+                    <ng-template [ngIf]="general_rating > i + 1">
+                      <ion-icon
+                        name="star"
+                        style="color: yellow; font-size: 16px; margin: 2.5px"
+                      ></ion-icon>
+                    </ng-template>
+                    <ng-template [ngIf]="i + 1 >= general_rating">
+                      <ion-icon
+                        name="star-outline"
+                        style="color: yellow; font-size: 16px; margin: 2.5px"
+                      ></ion-icon>
+                    </ng-template>
+                  </div>
+                </div>
+              </ion-item>
+
+              <ion-item>
+                <p>Your Rating</p>
+                <div
+                  *ngIf="rating !== undefined"
+                  style="padding: 5px; width: 100%; text-align: center"
+                >
+                  <div
+                    *ngFor="let item of [].constructor(10) let i = index"
+                    style="display: inline"
+                  >
+                    <ng-template [ngIf]="rating >= i + 1">
+                      <ion-icon
+                        name="star"
+                        style="color: yellow; font-size: 16px; margin: 2.5px"
+                        (click)="addRating(i + 1)"
+                      ></ion-icon>
+                    </ng-template>
+                    <ng-template [ngIf]="i + 1 > rating">
+                      <ion-icon
+                        name="star-outline"
+                        style="color: yellow; font-size: 16px; margin: 2.5px"
+                        (click)="addRating(i + 1)"
+                      ></ion-icon>
+                    </ng-template>
+                  </div>
+                </div>
+              </ion-item>
+
+              <br />
+              <div>
+                <h2>Description</h2>
+                <p>{{movie.description}}</p>
+                <br />
+              </div>
+              <div>
+                <ion-button
+                  *ngIf="!is_favorite"
+                  style="--background: #2eff74e1"
+                  (click)="addToFavorites()"
+                  expand="block"
+                  >Add to favorites</ion-button
+                >
+                <ion-button
+                  style="--background: #ec1a1a"
+                  (click)="openTrailer()"
+                  expand="block"
+                  >Trailer</ion-button
+                >
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col sizeMd="4" offsetMd="4">
+        <div>
+          <ion-grid style="margin-bottom: 10px" *ngFor="let com of comment">
+            <ion-row>
+              <ion-column>
+                <ion-item>
+                  <p>
+                    <ion-icon name="person"></ion-icon>
+                    {{com.username}}
+                  </p>
+                </ion-item>
+              </ion-column>
+            </ion-row>
+
+            <ion-row>
+              <ion-column>
+                <ion-item>
+                  <p>{{com.description}}</p>
+                </ion-item>
+              </ion-column>
+            </ion-row>
+          </ion-grid>
+
+          <ion-item>
+            <ion-input
+              [(ngModel)]="description"
+              type="text"
+              placeholder="Leave your comment"
+            ></ion-input>
+          </ion-item>
+          <br />
+          <ion-button
+            (click)="addComment()"
+            expand="block"
+            style="--background: #2eff74e1"
+            >Comment</ion-button
+          >
+          <br />
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

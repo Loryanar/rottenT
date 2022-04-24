@@ -1,0 +1,67 @@
+<div
+  style="
+    background-color: #22242894;
+    z-index: 999;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+  "
+  *ngIf="loading"
+>
+  <ion-spinner name="lines" style="color: #2eff74e1"></ion-spinner>
+</div>
+
+<ion-content>
+  <div id="header">
+    <img src="assets/logos/logo1.png" />
+    <h1>RottenT</h1>
+  </div>
+
+  <ion-item>
+    <ion-input
+      [value]="username"
+      (input)="username=$event.target.value"
+      type="text"
+      placeholder="Username"
+    ></ion-input>
+  </ion-item>
+  <br />
+  <ion-item>
+    <ion-input
+      [value]="password"
+      (input)="password=$event.target.value"
+      type="password"
+      placeholder="Password"
+    ></ion-input>
+  </ion-item>
+  <br />
+  <ion-button
+    [disabled]="!username ||!password "
+    expand="block"
+    shape="round"
+    (click)="register()"
+    >Register</ion-button
+  >
+
+  <div id="register">
+    <ng-template [ngIf]="error">
+      <br />
+      <ion-item>
+        <p>{{error}}</p>
+      </ion-item>
+    </ng-template>
+    <br />
+    <ion-item>
+      <p>
+        or
+        <a (click)="goToLogin()"> Login</a>
+        if you already have an account
+      </p>
+    </ion-item>
+  </div>
+</ion-content>
